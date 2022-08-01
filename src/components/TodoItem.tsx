@@ -11,7 +11,7 @@ interface Props {
 
 const TodoItem = ({todo, todos, setTodos}:Props) => {
   return (
-    <form className="single-todo">
+    <form className="single-todo-form">
       <div className="single-todo-text">{todo.todo}</div>
       <div>
         <span className="icon">
