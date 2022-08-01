@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   position: relative;
-  width: 90%;
+  width: 95%;
 }
 
 .input-box {
@@ -48,7 +48,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  width: 90%;
+  width: 95%;
 }
 
 .single-todo-form {
@@ -57,7 +57,7 @@
   display: flex;
   margin-top: 15px;
   padding: 20px;
-  width: 30%;
+  width: 100%;
 }
 
 .single-todo-text {
@@ -71,4 +71,35 @@
   margin-left: 10px;
   font-size: 22px;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 560px) {
+  .input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+
+  .submit-btn {
+    right: 2%;
+  }
+
+  .input-box {
+    width: 90%;
+  }
+
+  .todo-list {
+    width: 90%;
+  }
+
+  .single-todo-form {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .submit-btn {
+    right: 3%;
+  }
 }
