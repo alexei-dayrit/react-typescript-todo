@@ -2,7 +2,7 @@
   align-items: center;
   display: flex;
   position: relative;
-  width: 90%;
+  width: 95%;
 }
 
 .input-box {
@@ -40,6 +40,66 @@
 }
 
 .submit-btn:active {
-  transform: scale(0.8);
   box-shadow: 0 0 5px black;
+  transform: scale(0.8);
+}
+
+.todo-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 95%;
+}
+
+.single-todo-form {
+  background-image: url("./images/todo-background.jpeg");
+  border-radius: 5px;
+  display: flex;
+  margin-top: 15px;
+  padding: 20px;
+  width: 100%;
+}
+
+.single-todo-text {
+  border: none;
+  flex: 1;
+  font-size: 18px;
+  padding: 5px;
+}
+
+.icon {
+  margin-left: 10px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 560px) {
+  .input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 85%;
+  }
+
+  .submit-btn {
+    right: 2%;
+  }
+
+  .input-box {
+    width: 90%;
+  }
+
+  .todo-list {
+    width: 90%;
+  }
+
+  .single-todo-form {
+    width: 40%;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .submit-btn {
+    right: 3%;
+  }
 }
