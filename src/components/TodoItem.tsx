@@ -26,7 +26,7 @@ const TodoItem = ({ todo, todos, setTodos }: Props) => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const handleEdit = (event: React.FormEvent, id: number) => {
+  const handleEditSubmit = (event: React.FormEvent, id: number) => {
     event.preventDefault();
     setTodos(todos.map((todo) => (
       todo.id === id ? {...todo, todo: editTodoItem} : todo
@@ -35,7 +35,7 @@ const TodoItem = ({ todo, todos, setTodos }: Props) => {
   }
 
   return (
-    <form className="single-todo-form" onSubmit={(event) => handleEdit(event, todo.id)}>
+    <form className="single-todo-form" onSubmit={(event) => handleEditSubmit(event, todo.id)}>
       {editMode ? (
         <input
           value={editTodoItem}
