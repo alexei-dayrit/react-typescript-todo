@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Todo } from "../model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
@@ -11,6 +11,9 @@ interface Props {
 }
 
 const TodoItem = ({ todo, todos, setTodos }: Props) => {
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [editTodoItem, setEditTodoItem] = useState<string>(todo.todo);
+
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
@@ -20,20 +23,47 @@ const TodoItem = ({ todo, todos, setTodos }: Props) => {
   };
 
   const handleDelete = (id: number) => {
-    setTodos(
-      todos.filter((todo) => (todo.id !== id))
-    )
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
+  const handleEditSubmit = (event: React.FormEvent, id: number) => {
+    event.preventDefault();
+    setTodos(todos.map((todo) => (
+      todo.id === id ? {...todo, todo: editTodoItem} : todo
+    )));
+    setEditMode(false);
   }
 
+  const editInputRef = useRef<HTMLInputElement>(null)
+
+  useEffect(() => {
+    editInputRef.current?.focus();
+  }, [editMode])
+
   return (
-    <form className="single-todo-form">
-      {todo.isCompleted
-        ? <s className="single-todo-text">{todo.todo}</s>
-        : <div className="single-todo-text">{todo.todo}</div>
-      }
+    <form className="single-todo-form" onSubmit={(event) => handleEditSubmit(event, todo.id)}>
+      {editMode ? (
+        <input
+          ref={editInputRef}
+          value={editTodoItem}
+          onChange={(event) => setEditTodoItem(event.target.value)}
+          className="single-todo-text"
+        />
+      ) : todo.isCompleted ? (
+        <s className="single-todo-text">{todo.todo}</s>
+      ) : (
+        <div className="single-todo-text">{todo.todo}</div>
+      )}
 
       <div>
-        <span className="icon">
+        <span
+          className="icon"
+          onClick={() => {
+            if (!editMode && !todo.isCompleted) {
+              setEditMode(!editMode);
+            }
+          }}
+        >
           <AiFillEdit />
         </span>
         <span className="icon" onClick={() => handleDelete(todo.id)}>
