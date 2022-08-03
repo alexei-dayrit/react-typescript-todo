@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Todo } from "../model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
@@ -11,6 +11,9 @@ interface Props {
 }
 
 const TodoItem = ({ todo, todos, setTodos }: Props) => {
+  const [editMode, setEditMode] = useState<boolean>(false)
+  const [editTodoItem, setEditTodoItem] = useState<string>(todo.todo)
+
   const handleDone = (id: number) => {
     setTodos(
       todos.map((todo) =>
