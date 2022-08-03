@@ -19,6 +19,12 @@ const TodoItem = ({ todo, todos, setTodos }: Props) => {
     );
   };
 
+  const handleDelete = (id: number) => {
+    setTodos(
+      todos.filter((todo) => (todo.id !== id))
+    )
+  }
+
   return (
     <form className="single-todo-form">
       {todo.isCompleted
