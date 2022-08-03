@@ -1,7 +1,8 @@
-import React from 'react'
-import { Todo } from '../model'
+import React from "react";
+import { Todo } from "../model";
 import { AiFillEdit, AiFillDelete } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
+import TodoList from "./TodoList";
 
 interface Props {
   todo: Todo;
@@ -9,10 +10,22 @@ interface Props {
   setTodos: React.Dispatch<React.SetStateAction<Todo[]>>;
 }
 
-const TodoItem = ({todo, todos, setTodos}:Props) => {
+const TodoItem = ({ todo, todos, setTodos }: Props) => {
+  const handleDone = (id: number) => {
+    setTodos(
+      todos.map((todo) =>
+        todo.id === id ? { ...todo, isCompleted: !todo.isCompleted } : todo
+      )
+    );
+  };
+
   return (
     <form className="single-todo-form">
-      <div className="single-todo-text">{todo.todo}</div>
+      {todo.isCompleted
+        ? <s className="single-todo-text">{todo.todo}</s>
+        : <div className="single-todo-text">{todo.todo}</div>
+      }
+
       <div>
         <span className="icon">
           <AiFillEdit />
@@ -20,12 +33,12 @@ const TodoItem = ({todo, todos, setTodos}:Props) => {
         <span className="icon">
           <AiFillDelete />
         </span>
-        <span className="icon">
+        <span className="icon" onClick={() => handleDone(todo.id)}>
           <MdDone />
         </span>
       </div>
     </form>
   );
-}
+};
 
-export default TodoItem
+export default TodoItem;
