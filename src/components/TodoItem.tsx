@@ -28,7 +28,9 @@ const TodoItem = ({ todo, todos, setTodos }: Props) => {
 
   return (
     <form className="single-todo-form">
-      {todo.isCompleted ? (
+      {editMode ? (
+        <input value={editTodoItem} />
+      ) : todo.isCompleted ? (
         <s className="single-todo-text">{todo.todo}</s>
       ) : (
         <div className="single-todo-text">{todo.todo}</div>
